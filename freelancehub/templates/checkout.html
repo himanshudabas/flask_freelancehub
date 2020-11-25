@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    
+    <!-- <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"> -->
+    <div class="media-body">
+      <!-- <div class="article-metadata">
+        <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+        <small class="text-muted">{{ post.date_posted.strftime('%d %b, %Y') }}</small>
+      </div> -->
+      <h4 class="text-center mt-4 mb-4">
+        Fill the required details to buy this service
+      </h4>
+    <article class="media content-section">
+      <div class="card col-md-5 p-0">
+        <div class="card">
+          <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}" alt="Service Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text font-weight-bold">By: 
+              <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex" style="align-items:center;justify-content:center;">
+              <div>
+                <small class="text-muted">Posted: {{ post.date_posted.strftime('%d %b, %Y') }}</small>
+              </div>
+              <div class="ml-auto">
+                <a href="#" class="btn btn-outline-dark disabled">Price: ₹{{ post.price }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+      
+    </div>
+  </article>
+{% endblock content %}

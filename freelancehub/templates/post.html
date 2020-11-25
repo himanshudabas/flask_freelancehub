@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block content %}
+  {% if post.listed or post.author == current_user %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+          <small class="text-muted">{{ post.date_posted.strftime('%d %b, %Y') }}</small>
+          {% if post.author == current_user %}
+            <div>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+              {% if post.listed %}
+                <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#unlistModal">Unlist</button>
+              {% else %}
+                <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#relistModal">Relist</button>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <article class="media content-section">
+          <div class="card col-md-5 p-0">
+            <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}" alt="Service Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.content }}</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex" style="align-items:center;justify-content:center;">
+                <div>
+                  <small class="text-muted">Posted: {{ post.date_posted.strftime('%d %b, %Y') }}</small>
+                </div>
+                <div class="ml-auto">
+                  <a href="{{ url_for('posts.checkout', post_id=post.id) }}" class="btn btn-success">Buy: ₹{{ post.price }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </article>
+  {% else %}
+    <h2 class="text-center">
+      Sorry, this service has been unlisted by the owner.
+    </h2>
+  {% endif %}
+
+  <!-- Modal -->
+  <div class="modal fade" id="unlistModal" tabindex="-1" role="dialog" aria-labelledby="unlistModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="unlistModalLabel">Delete Listing? This will remove it from HomePage.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('posts.unlist_post', post_id=post.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Unlist">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="relistModal" tabindex="-1" role="dialog" aria-labelledby="relistModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="relistModalLabel">Relist this Service? This will re-enable this listing.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('posts.relist_post', post_id=post.id) }}" method="POST">
+            <input class="btn btn-success" type="submit" value="Relist">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

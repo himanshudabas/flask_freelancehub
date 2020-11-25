@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        {% if services.total %}
+            {% for i in services.items %}
+                {{ i }}
+            {% endfor %}
+        {% else %}
+            <h2 class="text-center">Your History is empty. Try buyting some Services from HomePage.</h2>
+        {% endif %}
+    </div>
+{% endblock content %}

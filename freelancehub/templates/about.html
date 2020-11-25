@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+  <ul class="list-group col-md-3">
+    <li class="list-group-item active">Project By:</li>
+    {% for name in created_by %}
+      <li class="list-group-item">{{ name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

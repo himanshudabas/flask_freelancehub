@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    
+    <!-- <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"> -->
+    <div class="media-body">
+      <!-- <div class="article-metadata">
+        <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+        <small class="text-muted">{{ post.date_posted.strftime('%d %b, %Y') }}</small>
+      </div> -->
+      <h4 class="text-center mt-4 mb-4">
+        Fill the required details to buy this service
+      </h4>
+    <article class="media content-section">
+
+      <div class="card-deck" style="width:100%;">
+
+        <div class="card">
+          <img class="card-img-top" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}" alt="Service Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text font-weight-bold">By: 
+              <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex" style="align-items:center;justify-content:center;">
+              <div>
+                <small class="text-muted">Posted: {{ post.date_posted.strftime('%d %b, %Y') }}</small>
+              </div>
+              <div class="ml-auto">
+                <a href="#" class="btn btn-outline-dark disabled">Price: ₹{{ post.price }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6"> <span>CREDIT/DEBIT CARD PAYMENT</span> </div>
+              <div class="col-md-6 text-right" style="margin-top: -5px;"> <img src="https://img.icons8.com/color/36/000000/visa.png"> <img src="https://img.icons8.com/color/36/000000/mastercard.png"> <img src="https://img.icons8.com/color/36/000000/amex.png"> </div>
+            </div>
+          </div>
+          <div class="card-body" style="height: 350px">
+            <form method="POST" action="">
+              {{ form.hidden_tag() }}
+
+              <div class="form-group">
+                {{ form.card_no.label(class="control-label", for="cc-number") }}
+                {% if form.card_no.errors %}
+                  {{ form.card_no(id="cc-number", type="tel", class="is-invalid form-control cc-number input-lg", autocomplete="cc-number", placeholder="•••• •••• •••• ••••", required="") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.card_no.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.card_no(id="cc-number", type="tel", class="form-control cc-number input-lg", autocomplete="cc-number", placeholder="•••• •••• •••• ••••", required="") }}
+                {% endif %}
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{ form.expiry.label(class="control-label", for="cc-exp") }}
+                    {% if form.expiry.errors %}
+                      {{ form.expiry(id="cc-exp", autocomplete="cc-exp", class="cc-exp is-invalid form-control input-lg", placeholder="•••• •••• •••• ••••", required="", type="tel") }}
+                      <div class="invalid-feedback">
+                        {% for error in form.expiry.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.expiry(id="cc-exp", autocomplete="cc-exp", class="cc-exp form-control input-lg", placeholder="•• / ••", required="", type="tel") }}
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{ form.cvv.label(class="control-label", for="cc-cvc") }}
+                    {% if form.cvv.errors %}
+                      {{ form.cvv(id="cc-cvc", autocomplete="cc-cvc", class="cc-cvc is-invalid form-control input-lg", placeholder="••••", required="", type="tel") }}
+                      <div class="invalid-feedback">
+                        {% for error in form.cvv.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.cvv(id="cc-cvc", autocomplete="off", class="cc-cvc form-control input-lg", placeholder="••••", required="", type="tel") }}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                {{ form.name.label(class="control-label", for="numeric") }}
+                {% if form.name.errors %}
+                  {{ form.name(type="text", class="input-lg is-invalid form-control", required="") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.name(type="text", class="input-lg form-control", required="") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.submit(class="btn btn-outline-success form-control", style="font-size: .8rem;") }}
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+     
+    </article>
+      
+    </div>
+  </article>
+{% endblock content %}
+{% block scripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+  <script src="{{ url_for('static', filename='cc.js') }}"></script>
+{% endblock %}

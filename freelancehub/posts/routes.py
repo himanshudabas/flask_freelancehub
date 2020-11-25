@@ -85,15 +85,3 @@ def relist_post(post_id):
     db.session.commit()
     flash('Your post has been Relisted!', 'success')
     return redirect(url_for('main.home'))
-
-
-
-@posts.route("/post/<int:post_id>/checkout", methods=['GET', 'POST'])
-@login_required
-def checkout(post_id):
-    post = Post.query.get_or_404(post_id)
-    form = PostForm()
-    if form.validate_on_submit():
-        pass
-    return render_template('checkout.html', title='Checkout',
-                           post=post, legend='Checkout')

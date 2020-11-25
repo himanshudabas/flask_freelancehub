@@ -26,8 +26,8 @@
                     <small class="text-muted">Posted: {{ post.date_posted.strftime('%d %b, %Y') }}</small>
                   </div>
                   <div class="ml-auto">
-                    <a href="{{ url_for('posts.checkout', post_id=post.id) }}" class="btn btn-success">Buy: ₹{{ post.price }}</a>
-                    <!-- <a href="{{ url_for('posts.post', post_id=post.id) }}" class="btn btn-success stretched-link "></a> -->
+                    <a href="{{ url_for('services.checkout', post_id=post.id) }}" class="btn btn-success">Buy: ₹{{ post.price }}</a>
+                    
                   </div>
                 </div>
               </div>

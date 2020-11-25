@@ -26,10 +26,12 @@ def create_app(config_class=Config):
     from freelancehub.users.routes import users
     from freelancehub.posts.routes import posts
     from freelancehub.main.routes import main
+    from freelancehub.services.routes import services
     from freelancehub.errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(services)
     app.register_blueprint(errors)
 
     return app

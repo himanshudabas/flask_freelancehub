@@ -77,8 +77,8 @@ def history():
     services = Service.query.filter_by(buyer_id=current_user.id)\
         .order_by(Service.buy_date.desc())\
         .paginate(page=page, per_page=10)
-    print('shit')
-    return render_template('user/history.html', services=services, user=user)
+    return render_template('user/history.html', services=services, user=user,
+                            title='History')
 
 
 @users.route("/user/<string:username>")

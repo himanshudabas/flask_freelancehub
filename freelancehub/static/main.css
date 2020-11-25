@@ -97,6 +97,15 @@ img.card-img-top {
   -webkit-box-orient: vertical;
 }
 
+.padding {
+  padding: 5rem !important
+}
+
+.form-control:focus {
+  box-shadow: 10px 0px 0px 0px #ffffff !important;
+  border-color: #4ca746
+}
+
 @media only screen and (max-width: 600px) {
   img.card-img-top {
     max-width: 100%;

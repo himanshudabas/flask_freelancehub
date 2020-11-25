@@ -58,4 +58,4 @@ class Service(db.Model):
     buy_price = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"Post('{self.post_id.title}', '{self.buy_price}', '{self.buy_date}')"
+        return f"Service('{self.post_id}', '{self.buy_price}', '{self.buy_date}')"

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="content-section">
-        <h3 class="text-left mb-3">Purchase History</h3>
+        <h3 class="text-left mb-3">Purchase History ({{ services.total }})</h3>
         {% if services.total %}
 
           <table class="table table-bordered">
@@ -33,4 +33,19 @@
             <h2 class="text-center">Your History is empty. Try buyting some Services from HomePage.</h2>
         {% endif %}
     </div>
+
+    <div class="text-center">
+      {% for page_num in services.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+          {% if services.page == page_num %}
+            <a class="btn btn-info mb-4" href="{{ url_for('users.history', page=page_num) }}">{{ page_num }}</a>
+          {% else %}
+            <a class="btn btn-outline-info mb-4" href="{{ url_for('users.history', page=page_num) }}">{{ page_num }}</a>
+          {% endif %}
+        {% else %}
+          ...
+        {% endif %}
+      {% endfor %}
+    </div>
+
 {% endblock content %}

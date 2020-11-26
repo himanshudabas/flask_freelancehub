@@ -27,9 +27,9 @@
 
         <div class="container">
           <a class="navbar-brand mr-4" href="/">Freelance Hub</a>
-          <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button> -->
+          </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
 
             <div class="navbar-nav mr-auto">
@@ -42,7 +42,7 @@
               {% if current_user.is_authenticated %}
                 <div>
 
-                  <a class="nav-item nav-link d-flex" style="align-items:center;justify-content:center;" href="{{ url_for('posts.new_post') }}">
+                  <a class="nav-item nav-link d-flex" style="align-items:center;" href="{{ url_for('posts.new_post') }}">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                       <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>

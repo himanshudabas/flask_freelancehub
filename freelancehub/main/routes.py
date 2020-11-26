@@ -6,7 +6,7 @@ import os
 main = Blueprint('main', __name__)
 
 
-if os.path.isfile('/etc/about.txt'):
+if os.path.isfile('/etc/freelancehub_about.txt'):
     about_path = '/etc/freelancehub_about.txt'
 else:
     script_dir = os.path.dirname(__file__)

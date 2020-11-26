@@ -1,7 +1,9 @@
 import os
+import random
 from freelancehub import db
-from freelancehub.services.forms import CheckoutForm
 from freelancehub.models import Post, Service, User
+from freelancehub.services.forms import CheckoutForm
+from freelancehub.services.utils import send_payment_email
 from flask import render_template, request, Blueprint, flash, redirect, url_for
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -22,6 +24,8 @@ def checkout(post_id):
             service = Service(post_id=post.id, buyer_id=user.id, buy_price=post.price)
             db.session.add(service)
             db.session.commit()
+
+            send_payment_email(user=user, service=service, post=post, rand_num=random.random())
             flash('Your Purchase was successfull! Author of the Listing would contact you shortly on your Email Address', 'success')
             return redirect( url_for('users.history') )
     return render_template('service/checkout.html', title='Checkout',

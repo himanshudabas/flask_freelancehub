@@ -1,0 +1,14 @@
+Hi {{ user.username }}, 
+
+Thank for purchasing "{{ post.title }}" by {{ url_for('users.user_posts', username=post.author.username, _external=True) }}.
+Purchase ID: {{ service.id }}
+Listing you Purchased: {{ url_for('posts.post', post_id=service.post_id, _external=True) }}
+Purchase time: {{ service.buy_date.strftime('%d %b, %Y %I:%M %p') }}
+Price: ₹ {{ service.buy_price }}
+
+You can check all your orders here: {{ url_for('users.history', _external=True) }}
+
+
+
+
+If this wasn't initiated by you, simly ignore this E-Mail.

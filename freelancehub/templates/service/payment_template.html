@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Purchase Receipt of {{ post.title }}</title>
+  <meta http–equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http–equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
+  <style>
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: "#efefef";
+      -webkit-text-size-adjust: 100% !important;
+      -ms-text-size-adjust: 100% !important;
+      -webkit-font-smoothing: antialiased !important;
+    }
+
+    p {
+      margin: 0 0 0 0 !important;
+      Padding: 0px !important;
+    }
+
+    td,
+    a,
+    span {
+      border-collapse: collapse;
+    }
+
+    h3 {
+      text-align: center;
+    }
+
+    div span {
+      color: inherit !important;
+    }
+
+    .foot {
+      margin-top: 30px !important;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Hi {{ user.username }}</h3>
+  <div>
+    <p>Thank for purchasing "{{ post.title }}" by <a
+        href="{{ url_for('users.user_posts', username=post.author.username, _external=True) }}">@{{ post.author.username }}</a>
+    </p><br>
+    <p>Purchase ID: {{ service.id }}
+    </p>
+    <p>Listing you Purchased: <a
+        href="{{ url_for('posts.post', post_id=service.post_id, _external=True) }}">{{ post.title }}</a>.
+    </p>
+    <p>Purchase time: {{ service.buy_date.strftime('%d %b, %Y %I:%M %p') }}
+    </p>
+    <p>Price: ₹ {{ service.buy_price }}
+    </p>
+    <p>You can check all your orders by clicking <a href="{{ url_for('users.history', _external=True) }}">here</a>.
+    </p>
+    <p class="foot">If this wasn't initiated by you, simply ignore this E-Mail.
+    </p>
+  </div>
+  <div style="display:none;">{{ rand_num }}</div>
+</body>
+
+</html>
